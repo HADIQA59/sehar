@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday 🎂</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,500&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<!--
+  PHOTO SETUP (Roman Urdu):
+  Is file ke saath jo "images" folder hai, usi mein apni photos daal dein
+  aur inhi naamon se save karein:
+    photo1.jpg
+    photo2.jpg
+    photo3.jpg
+    photo4.jpg
+  Agar koi photo na ho to us jagah sirf chhota camera icon dikhega,
+  website kharab nahi hogi.
+
+  Naam badalne ke liye "hero-name" wali h1 tag mein naam likh dein.
+-->
+
+<!-- floating side navigation dots -->
+<nav class="dots" aria-label="Section navigation">
+  <button class="dot active" data-index="0" aria-label="Go to Welcome"></button>
+  <button class="dot" data-index="1" aria-label="Go to Wish"></button>
+  <button class="dot" data-index="2" aria-label="Go to Reasons"></button>
+  <button class="dot" data-index="3" aria-label="Go to Memories"></button>
+  <button class="dot" data-index="4" aria-label="Go to Playlist"></button>
+  <button class="dot" data-index="5" aria-label="Go to Cake"></button>
+  <button class="dot" data-index="6" aria-label="Go to Promise"></button>
+  <button class="dot" data-index="7" aria-label="Go to Closing"></button>
+</nav>
+
+<canvas id="confetti-canvas"></canvas>
+
+<main id="track">
+
+  <!-- SECTION 1 : WELCOME -->
+  <section class="slide" id="slide-0">
+    <div class="balloons" aria-hidden="true">
+      <span class="balloon b1"></span>
+      <span class="balloon b2"></span>
+      <span class="balloon b3"></span>
+      <span class="balloon b4"></span>
+      <span class="balloon b5"></span>
+    </div>
+    <div class="content welcome-content">
+      <p class="eyebrow">A little something for</p>
+      <h1 class="hero-name">Ahmed</h1>
+      <p class="hero-line">The one who makes ordinary days feel worth remembering.</p>
+      <button class="next-btn" data-next>Start <span class="arrow">→</span></button>
+    </div>
+  </section>
+
+  <!-- SECTION 2 : WISH -->
+  <section class="slide" id="slide-1">
+    <div class="content wish-content">
+      <h2 class="section-title">For You</h2>
+      <p class="wish-text">
+        A year has quietly turned over, and somehow you've only gotten better at being exactly who you are.
+        May this one bring you calm mornings, easy wins, and people around you who see
+        the same things in you that I do.
+      </p>
+      <p class="wish-text signature">Happy birthday, to the best of them. 🤍</p>
+      <button class="next-btn" data-next>Keep going <span class="arrow">→</span></button>
+    </div>
+  </section>
+
+  <!-- SECTION 3 : REASONS -->
+  <section class="slide" id="slide-2">
+    <div class="content reasons-content">
+      <h2 class="section-title">A Few Reasons</h2>
+      <ul class="reasons-list">
+        <li>The way you make hard days sound solvable.</li>
+        <li>How you remember the small things nobody else does.</li>
+        <li>That steady calm you bring into every room.</li>
+        <li>The way you show up, every single time, without being asked.</li>
+      </ul>
+      <button class="next-btn" data-next>See the memories <span class="arrow">→</span></button>
+    </div>
+  </section>
+
+  <!-- SECTION 4 : PHOTO GALLERY -->
+  <section class="slide" id="slide-3">
+    <div class="content gallery-content">
+      <h2 class="section-title">Little Moments</h2>
+      <p class="gallery-sub">A few frames worth keeping.</p>
+      <div class="gallery-grid">
+        <figure class="frame f1"><img src="images/photo1.jpg" alt="Memory one" onerror="this.parentElement.classList.add('empty')"></figure>
+        <figure class="frame f2"><img src="images/photo2.jpg" alt="Memory two" onerror="this.parentElement.classList.add('empty')"></figure>
+        <figure class="frame f3"><img src="images/photo3.jpg" alt="Memory three" onerror="this.parentElement.classList.add('empty')"></figure>
+        <figure class="frame f4"><img src="images/photo4.jpg" alt="Memory four" onerror="this.parentElement.classList.add('empty')"></figure>
+      </div>
+      <button class="next-btn" data-next>One more thing <span class="arrow">→</span></button>
+    </div>
+  </section>
+
+  <!-- SECTION 5 : PLAYLIST / SONG NOTE -->
+  <section class="slide" id="slide-4">
+    <div class="content playlist-content">
+      <h2 class="section-title">This One's for Today</h2>
+      <div class="song-card">
+        <div class="vinyl" aria-hidden="true"></div>
+        <div class="song-info">
+          <p class="song-title">Your favourite track, on repeat</p>
+          <p class="song-sub">Add the song that reminds you of him here.</p>
+        </div>
+      </div>
+      <button class="next-btn" data-next>Make a wish <span class="arrow">→</span></button>
+    </div>
+  </section>
+
+  <!-- SECTION 6 : CAKE / CANDLE -->
+  <section class="slide" id="slide-5">
+    <div class="content cake-content">
+      <h2 class="section-title">Blow the Candle</h2>
+      <p class="cake-sub">Close your eyes, make a wish, then tap the flame.</p>
+
+      <div class="cake" id="cake">
+        <div class="candle">
+          <span class="flame" id="flame"></span>
+          <div class="stick"></div>
+        </div>
+        <div class="frosting"></div>
+        <div class="cake-layer top"></div>
+        <div class="cake-layer bottom"></div>
+        <div class="plate"></div>
+      </div>
+
+      <p class="cake-hint" id="cakeHint">Tap the flame ☝</p>
+      <button class="next-btn" data-next id="toPromise" disabled>Continue <span class="arrow">→</span></button>
+    </div>
+  </section>
+
+  <!-- SECTION 7 : PROMISE -->
+  <section class="slide" id="slide-6">
+    <div class="content promise-content">
+      <h2 class="section-title">A Small Promise</h2>
+      <p class="wish-text">
+        Whatever this year brings, I'm not going anywhere. Same person, showing up,
+        cheering loudest from the side you can't always see.
+      </p>
+      <button class="next-btn" data-next>Last one <span class="arrow">→</span></button>
+    </div>
+  </section>
+
+  <!-- SECTION 8 : CLOSING -->
+  <section class="slide" id="slide-7">
+    <div class="content closing-content">
+      <h2 class="closing-title">Happy Birthday</h2>
+      <p class="closing-line">Here's to another year that suits you perfectly.</p>
+      <button class="next-btn" id="replayBtn">Replay <span class="arrow">↺</span></button>
+    </div>
+  </section>
+
+</main>
+
+<script src="script.js"></script>
+</body>
+</html>

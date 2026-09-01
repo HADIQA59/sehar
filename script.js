@@ -1,7 +1,13 @@
 // ---------- Slide navigation ----------
 const slides = document.querySelectorAll(".slide");
 const dots = document.querySelectorAll(".dot");
+const progressFill = document.getElementById("progressFill");
 let current = 0;
+
+function updateProgress(){
+  const pct = ((current + 1) / slides.length) * 100;
+  progressFill.style.width = pct + "%";
+}
 
 function goTo(index){
   if(index < 0 || index >= slides.length) return;
@@ -10,6 +16,7 @@ function goTo(index){
   current = index;
   slides[current].classList.add("active");
   dots[current].classList.add("active");
+  updateProgress();
 
   if(current === slides.length - 1){
     launchConfetti();
@@ -34,20 +41,20 @@ window.addEventListener("keydown", (e)=>{
 
 // show first slide on load
 slides[0].classList.add("active");
+updateProgress();
 
 // ---------- Candle blow interaction ----------
 const flame = document.getElementById("flame");
 const cake = document.getElementById("cake");
 const cakeHint = document.getElementById("cakeHint");
-const toClosing = document.getElementById("toPromise");
+const toPromise = document.getElementById("toPromise");
 
 flame.addEventListener("click", ()=>{
   if(flame.classList.contains("out")) return;
   flame.classList.add("out");
-  cakeHint.textContent = "Your wish is on its way ✨";
-  toClosing.disabled = false;
+  cakeHint.textContent = "Aap ki dua qubool ho ✨";
+  toPromise.disabled = false;
 
-  // little smoke puffs
   for(let i=0;i<4;i++){
     setTimeout(()=>{
       const smoke = document.createElement("span");
@@ -72,7 +79,7 @@ function resizeCanvas(){
 window.addEventListener("resize", resizeCanvas);
 resizeCanvas();
 
-const confettiColors = ["#ffcf6b", "#ff7fa3", "#b79cff", "#fff6ea"];
+const confettiColors = ["#d9a95c", "#e9c78a", "#c98a8a", "#9b8bd1"];
 
 function createConfetti(){
   confettiPieces = [];
